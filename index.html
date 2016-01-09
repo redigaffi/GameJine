@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+       
+    </head>
+    <body>
+         <canvas id="game" width="1800" height="900" style="border: 1px solid black;"></canvas> 
+    </body>
+    <script type="text/javascript" src="source/Game.js"></script>
+    <script type="text/javascript" src="source/Drawable.js"></script>
+    <script type="text/javascript" src="source/Player.js"></script>
+    <script type="text/javascript" src="source/Object.js"></script>
+    <script type="text/javascript">
+        c   = document.getElementById("game");
+        ctx = c.getContext("2d");
+        
+        p = new Player();
+        
+        p.keyHandler();
+        
+        Game = new Game(ctx);
+        Game.objects.push(p);
+        Game.start();
+        
+    </script>
+
+</html>
