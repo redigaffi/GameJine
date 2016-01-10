@@ -7,14 +7,14 @@
 
 function Drawable(){
     this.x      = 20;
-    this.xSpeed = 50;
+    this.xSpeed = 5;
     this.y      = 20;
-    this.ySpeed = 50;
-    this.width  = 60;
-    this.height = 60;
+    this.ySpeed = 5;
+    this.width  = 47;
+    this.height = 65;
     this.img    = "img/sprites/char.png";
-    this.xImg   = 50;
-    
+    this.xImg   = 47;
+    this.xOffset= 8;
     this.yImg   = 65;
     this.xLine  = 1;
     this.yLine  = 1;
