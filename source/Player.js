@@ -26,7 +26,6 @@ Player.prototype.constructor = Player;
 
 Player.prototype.load = function(p){
     player = p;
-    
 }
 
 
@@ -67,7 +66,6 @@ Player.prototype.keyHandler = function(event){
             this.player.y -= this.player.ySpeed;
             this.player.xLine++;
             this.player.yLine = 0;
-           
         break;
     }
     

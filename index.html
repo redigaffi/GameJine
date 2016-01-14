@@ -24,9 +24,10 @@ and open the template in the editor.
     <script type="text/javascript" src="source/Drawable.js"></script>
     <script type="text/javascript" src="source/Player.js"></script>
     <script type="text/javascript" src="source/Object.js"></script>
-    <script type="text/javascript" src="http://localhost:3030/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script type="text/javascript">
-        socket = io.connect('localhost:3030');
+        console.log("fucker");
+        socket = io.connect('localhost:8080');
         c      = document.getElementById("game");
         ctx    = c.getContext("2d");
         
@@ -39,7 +40,7 @@ and open the template in the editor.
         Game.objects.push(p);
         Game.start();
         
-        
+        console.log("fucker");
         setInterval(function(){
             socket.emit("update", p);
         }, 10);

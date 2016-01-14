@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(3030);
+var io = require('socket.io').listen(8080);
 io.set('origins', '*:*');
 objects = [];
 mapping = [];
@@ -11,8 +11,8 @@ io.sockets.on('connection', function (socket) {
         
        if(mapping[socket.id] == undefined){
             objects[players]    = data;
-            mapping[socket.id]  = players;
-            players++;
+            mapping[socket.id]  = players++;
+            
        }else{
             pId = mapping[socket.id];
             objects[pId] = data;
@@ -21,7 +21,13 @@ io.sockets.on('connection', function (socket) {
         socket.emit("update", objects);
     });
 
-    
+        
+    socket.on('disconnect', function(){
+        id = mapping[socket.id];
+        objects.splice(id, 1);
+        players--;
+        
+    });
 
     
 });
