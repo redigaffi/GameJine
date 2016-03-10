@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>GameJine</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -15,43 +15,45 @@ and open the template in the editor.
                 padding: 0px;
             }
         </style>
-       
+
     </head>
     <body>
-         <canvas id="game" width="1800" height="900" style="border: 1px solid black;"></canvas> 
+         <canvas id="game" width="1800" height="900" style="border: 1px solid black;"></canvas>
     </body>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="source/Game.js"></script>
     <script type="text/javascript" src="source/Drawable.js"></script>
     <script type="text/javascript" src="source/Player.js"></script>
     <script type="text/javascript" src="source/Object.js"></script>
     <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script type="text/javascript">
-        console.log("fucker");
         socket = io.connect('localhost:8080');
         c      = document.getElementById("game");
         ctx    = c.getContext("2d");
-        
-        p = new Player();
-        p.name = prompt("Username");
-        p.load(p);
+
+        p      = new Player();
+        p.name = prompt("Choose your username: ");
+        p.race = prompt("Choose your race: (Magician, Humanoid)");
+        $.getJSON("sprites/"+p.race+".json", function(result){
+            p.load(p, result);
+        });
+
         p.keyHandler();
-        
+
         Game = new Game(ctx);
         Game.objects.push(p);
         Game.start();
-        
-        console.log("fucker");
+
         setInterval(function(){
             socket.emit("update", p);
         }, 10);
-        
+
         socket.on("update", function(data){
-           //Game.objects = data;
-           Game.objects = data;
-           
+           Game.objects = data
         });
-        
-        
+
+
     </script>
 
 </html>
